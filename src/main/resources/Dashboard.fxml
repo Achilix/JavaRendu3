@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.DashboardController" spacing="10" alignment="CENTER">
+    <Label text="Dashboard" />
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Create Event" onAction="#handleCreateEvent" />
+        <Button text="Reserve Salle" onAction="#handleReserveSalle" />
+        <Button text="Reserve Terrain" onAction="#handleReserveTerrain" />
+    </HBox>
+    <Label text="Existing Events" />
+    <ListView fx:id="eventsListView" />
+    <Label text="Reserved Salles" />
+    <ListView fx:id="sallesListView" />
+    <Label text="Reserved Terrains" />
+    <ListView fx:id="terrainsListView" />
+</VBox>
