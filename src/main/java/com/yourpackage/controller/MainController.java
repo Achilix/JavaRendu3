@@ -1,6 +1,5 @@
 package com.yourpackage.controller;
 
-import com.yourpackage.DAO.UserDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,8 +14,6 @@ public class MainController {
     @FXML
     private StackPane contentPane;
 
-    private final UserDAO userDao = new UserDAO();
-
     @FXML
     private void showUtilisateurView() {
         // Load and display the Utilisateur view
@@ -29,22 +26,25 @@ public class MainController {
 
     @FXML
     private void handleSignIn() {
-        loadFXML("/Signin.fxml", new SigninController(userDao));
+        loadFXML("/Signin.fxml");
     }
 
     @FXML
     private void handleSignUp() {
-        loadFXML("/Signup.fxml", new SignupController(userDao));
+        loadFXML("/Signup.fxml");
     }
 
-    private void loadFXML(String fxmlPath, Object controller) {
+    private void loadFXML(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            loader.setController(controller);
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
+
+            // Close the current stage if needed
+            Stage currentStage = (Stage) contentPane.getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

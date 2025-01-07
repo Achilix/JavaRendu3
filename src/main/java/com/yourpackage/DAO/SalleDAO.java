@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalleDAO implements GenericDAO<Salle> {
-    private final String url = "jdbc:mysql://localhost:3306/EM";
-    private final String username = "root";
-    private final String password = "";
+    private final String url = "jdbc:postgresql://localhost:5432/EM";
+    private final String username = "postgres";
+    private final String password = "marouach123";
 
     @Override
     public void add(Salle salle) {

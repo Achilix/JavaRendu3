@@ -17,6 +17,11 @@ public class SigninController {
 
     private final UserDAO userDao;
 
+    // No-argument constructor
+    public SigninController() {
+        this.userDao = new UserDAO(); // Initialize userDao or handle it appropriately
+    }
+
     public SigninController(UserDAO userDao) {
         this.userDao = userDao;
     }
@@ -41,13 +46,13 @@ public class SigninController {
         alert.showAndWait();
 
         if (success) {
-            loadDashboard();
+            loadCreateEvent();
         }
     }
 
-    private void loadDashboard() {
+    private void loadCreateEvent() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Dashboard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateEvent.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
