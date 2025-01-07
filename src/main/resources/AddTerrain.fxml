@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.AddTerrainController" spacing="10" alignment="CENTER">
+    <Label text="Add Terrain" />
+    <TextField fx:id="terrainNameField" promptText="Terrain Name" />
+    <TextField fx:id="typeField" promptText="Type" />
+    <TextField fx:id="sizeField" promptText="Size" />
+    <Button text="Add Terrain" onAction="#handleAddTerrain" />
+    <Button text="Back to Create Event" onAction="#showCreateEvent" />
+</VBox>

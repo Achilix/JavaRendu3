@@ -43,8 +43,10 @@ public class MainController {
             stage.show();
 
             // Close the current stage if needed
-            Stage currentStage = (Stage) contentPane.getScene().getWindow();
-            currentStage.close();
+            if (contentPane != null && contentPane.getScene() != null) {
+                Stage currentStage = (Stage) contentPane.getScene().getWindow();
+                currentStage.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -37,6 +37,8 @@ public class SigninController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
+        System.out.println("Attempting to sign in with email: " + email + " and password: " + password);
+
         boolean success = userDao.validateUser(email, password);
 
         Alert alert = new Alert(success ? AlertType.INFORMATION : AlertType.ERROR);

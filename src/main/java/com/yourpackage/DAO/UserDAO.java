@@ -116,9 +116,13 @@ public class UserDAO implements GenericDAO<User> {
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, email);
             stmt.setString(2, password);
+            System.out.println("Executing query: " + stmt);
             ResultSet rs = stmt.executeQuery();
-            return rs.next();
+            boolean result = rs.next();
+            System.out.println("User validation result: " + result);
+            return result;
         } catch (SQLException e) {
+            System.err.println("SQL Exception occurred while validating user: " + e.getMessage());
             e.printStackTrace();
         }
         return false;

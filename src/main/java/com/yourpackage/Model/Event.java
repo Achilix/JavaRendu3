@@ -7,14 +7,16 @@ public class Event {
     private String name;
     private String description;
     private Date date;
+    private int userId;
 
     public Event() {}
 
-    public Event(int id, String name, String description, Date date) {
+    public Event(int id, String name, String description, Date date, int userId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.date = date;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -49,8 +51,11 @@ public class Event {
         this.date = date;
     }
 
-    @Override
-    public String toString() {
-        return "Event [id=" + id + ", name=" + name + ", description=" + description + ", date=" + date + "]";
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

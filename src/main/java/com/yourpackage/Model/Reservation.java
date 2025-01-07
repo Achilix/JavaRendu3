@@ -1,24 +1,30 @@
 package com.yourpackage.Model;
 
 import java.util.Date;
+import java.sql.Time;
 
 public class Reservation {
     private int id;
-    private int userId; 
-    private int resourceId; 
+    private int userId;
+    private int eventId;
+    private int salleId;
+    private int terrainId;
     private Date reservationDate;
+    private Time startTime;
+    private Time endTime;
 
-    
-    public Reservation() {}
-
-    public Reservation(int id, int userId, int resourceId, Date reservationDate) {
+    public Reservation(int id, int userId, int eventId, int salleId, int terrainId, Date reservationDate, Time startTime, Time endTime) {
         this.id = id;
         this.userId = userId;
-        this.resourceId = resourceId;
+        this.eventId = eventId;
+        this.salleId = salleId;
+        this.terrainId = terrainId;
         this.reservationDate = reservationDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
-    
+    // Getters and setters...
     public int getId() {
         return id;
     }
@@ -35,12 +41,28 @@ public class Reservation {
         this.userId = userId;
     }
 
-    public int getResourceId() {
-        return resourceId;
+    public int getEventId() {
+        return eventId;
     }
 
-    public void setResourceId(int resourceId) {
-        this.resourceId = resourceId;
+    public void setEventId(int eventId) {
+        this.eventId = eventId;
+    }
+
+    public int getSalleId() {
+        return salleId;
+    }
+
+    public void setSalleId(int salleId) {
+        this.salleId = salleId;
+    }
+
+    public int getTerrainId() {
+        return terrainId;
+    }
+
+    public void setTerrainId(int terrainId) {
+        this.terrainId = terrainId;
     }
 
     public Date getReservationDate() {
@@ -51,8 +73,19 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    @Override
-    public String toString() {
-        return "Reservation [id=" + id + ", userId=" + userId + ", resourceId=" + resourceId + ", reservationDate=" + reservationDate + "]";
+    public Time getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Time endTime) {
+        this.endTime = endTime;
     }
 }

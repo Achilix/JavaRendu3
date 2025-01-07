@@ -60,12 +60,24 @@ public class DashboardController {
 
     @FXML
     private void handleReserveSalle() {
-        loadFXML("/ReserveSalle.fxml");
+        loadFXML("/AddSalle.fxml");
     }
 
     @FXML
     private void handleReserveTerrain() {
-        loadFXML("/ReserveTerrain.fxml");
+        loadFXML("/AddTerrain.fxml");
+    }
+
+    @FXML
+    private void handleUpdateEvent() {
+        // Implement the logic to update an event
+        System.out.println("Update Event button clicked");
+    }
+
+    @FXML
+    private void handleDeleteEvent() {
+        // Implement the logic to delete an event
+        System.out.println("Delete Event button clicked");
     }
 
     private void loadFXML(String fxmlPath) {
