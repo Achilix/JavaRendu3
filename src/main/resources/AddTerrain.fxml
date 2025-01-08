@@ -8,7 +8,6 @@
     <Label text="Add Terrain" />
     <TextField fx:id="terrainNameField" promptText="Terrain Name" />
     <TextField fx:id="typeField" promptText="Type" />
-    <TextField fx:id="sizeField" promptText="Size" />
     <Button text="Add Terrain" onAction="#handleAddTerrain" />
     <Button text="Back to Create Event" onAction="#showCreateEvent" />
 </VBox>

@@ -17,19 +17,19 @@ public class TerrainDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                terrains.add(new Terrain(
+                Terrain terrain = new Terrain(
                         rs.getInt("id_terrain"),
                         rs.getString("nom_terrain"),
-                        rs.getString("type"),
-                        rs.getInt("size")
-                ));
+                        rs.getString("type")
+                );
+                terrains.add(terrain);
+                System.out.println("Fetched Terrain: " + terrain); // Debugging statement
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return terrains;
-    }
-
+    } 
     public Terrain getByName(String name) {
         String query = "SELECT * FROM terrains WHERE nom_terrain = ?";
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -40,8 +40,7 @@ public class TerrainDAO {
                 return new Terrain(
                         rs.getInt("id_terrain"),
                         rs.getString("nom_terrain"),
-                        rs.getString("type"),
-                        rs.getInt("size")
+                        rs.getString("type")
                 );
             }
         } catch (SQLException e) {
@@ -51,12 +50,11 @@ public class TerrainDAO {
     }
 
     public void add(Terrain terrain) {
-        String query = "INSERT INTO terrains (nom_terrain, type, size) VALUES (?, ?, ?)";
+        String query = "INSERT INTO terrains (nom_terrain, type) VALUES (?, ?)";
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement stmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, terrain.getName());
             stmt.setString(2, terrain.getType());
-            stmt.setInt(3, terrain.getSize());
             stmt.executeUpdate();
 
             // Retrieve the generated ID

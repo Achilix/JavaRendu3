@@ -4,15 +4,13 @@ public class Terrain {
     private int id;
     private String name;
     private String type; 
-    private int size; 
 
     public Terrain() {}
 
-    public Terrain(int id, String name, String type, int size) {
+    public Terrain(int id, String name, String type) {
         this.id = id;
         this.name = name;
         this.type = type;
-        this.size = size;
     }
 
     public int getId() {
@@ -39,16 +37,8 @@ public class Terrain {
         this.type = type;
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    public void setSize(int size) {
-        this.size = size;
-    }
-
     @Override
     public String toString() {
-        return "Terrain [id=" + id + ", name=" + name + ", type=" + type + ", size=" + size + "]";
+        return "Terrain [id=" + id + ", name=" + name + ", type=" + type + "]";
     }
 }

@@ -10,37 +10,37 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class AddTerrainController {
 
-    private final TerrainDAO terrainDao = new TerrainDAO();
-
     @FXML
-    private TextField terrainNameField;
-
+    private TextField nameField;
     @FXML
     private TextField typeField;
-
-    @FXML
-    private TextField sizeField;
-
     @FXML
     private VBox contentArea;
 
+    private TerrainDAO terrainDao = new TerrainDAO();
+
     @FXML
     private void handleAddTerrain() {
-        String name = terrainNameField.getText();
+        String name = nameField.getText();
         String type = typeField.getText();
-        int size = Integer.parseInt(sizeField.getText());
 
-        Terrain terrain = new Terrain(0, name, type, size);
+        if (name.isEmpty() || type.isEmpty()) {
+            showAlert("Error", "Please fill in all fields.");
+            return;
+        }
+
+        Terrain terrain = new Terrain(0, name, type);
         terrainDao.add(terrain);
 
         showAlert("Add Terrain", "Terrain added successfully!");
 
         // Close the current stage
-        Stage currentStage = (Stage) terrainNameField.getScene().getWindow();
+        Stage currentStage = (Stage) nameField.getScene().getWindow();
         currentStage.close();
     }
 

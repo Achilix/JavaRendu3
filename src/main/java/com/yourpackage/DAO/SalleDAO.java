@@ -17,12 +17,14 @@ public class SalleDAO {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                salles.add(new Salle(
-                        rs.getInt("id_salle"),
+                Salle salle = new Salle(
+                        rs.getInt("id_salles"),
                         rs.getString("nom_salle"),
                         rs.getInt("capacity"),
                         rs.getString("location")
-                ));
+                );
+                salles.add(salle);
+                System.out.println("Fetched Salle: " + salle); // Debugging statement
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,7 +40,7 @@ public class SalleDAO {
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 return new Salle(
-                        rs.getInt("id_salle"),
+                        rs.getInt("id_salles"),
                         rs.getString("nom_salle"),
                         rs.getInt("capacity"),
                         rs.getString("location")
