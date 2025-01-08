@@ -26,6 +26,9 @@ public class AddSalleController {
     private TextField locationField;
 
     @FXML
+    private TextField deleteSalleNameField;
+
+    @FXML
     private VBox contentArea;
 
     @FXML
@@ -39,14 +42,41 @@ public class AddSalleController {
 
         showAlert("Add Salle", "Salle added successfully!");
 
+        // Refresh the data in CreateEventController
+        refreshCreateEventController();
+
         // Close the current stage
         Stage currentStage = (Stage) salleNameField.getScene().getWindow();
         currentStage.close();
     }
 
     @FXML
+    private void handleDeleteSalle() {
+        String name = deleteSalleNameField.getText();
+        if (name.isEmpty()) {
+            showAlert("Error", "Please enter the name of the Salle to delete.");
+            return;
+        }
+
+        Salle salle = salleDao.getByName(name);
+        if (salle != null) {
+            salleDao.delete(salle.getId());
+            showAlert("Delete Salle", "Salle deleted successfully!");
+
+            // Refresh the data in CreateEventController
+            refreshCreateEventController();
+        } else {
+            showAlert("Error", "Salle not found.");
+        }
+
+        // Close the current stage
+        Stage currentStage = (Stage) deleteSalleNameField.getScene().getWindow();
+        currentStage.close();
+    }
+
+    @FXML
     private void showCreateEvent() {
-        loadView("/com/yourpackage/view/CreateEvent.fxml");
+        loadView("/CreateEvent.fxml");
     }
 
     private void loadView(String fxmlPath) {
@@ -65,5 +95,17 @@ public class AddSalleController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    private void refreshCreateEventController() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateEvent.fxml"));
+            Node node = loader.load();
+            CreateEventController controller = loader.getController();
+            controller.loadSalles();
+            contentArea.getChildren().setAll(node);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

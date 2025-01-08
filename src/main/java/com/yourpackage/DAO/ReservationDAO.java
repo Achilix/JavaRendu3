@@ -12,7 +12,7 @@ public class ReservationDAO implements GenericDAO<Reservation> {
 
     @Override
     public void add(Reservation reservation) {
-        String query = "INSERT INTO reservations (id_user, id_event, id_salle, id_terrain, reservation_date, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO reservations (id_user, id_event, id_salle, id_terrain, reservation_date) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, reservation.getUserId());
@@ -20,8 +20,6 @@ public class ReservationDAO implements GenericDAO<Reservation> {
             stmt.setInt(3, reservation.getSalleId());
             stmt.setInt(4, reservation.getTerrainId());
             stmt.setDate(5, new java.sql.Date(reservation.getReservationDate().getTime()));
-            stmt.setTime(6, reservation.getStartTime());
-            stmt.setTime(7, reservation.getEndTime());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,9 +40,7 @@ public class ReservationDAO implements GenericDAO<Reservation> {
                         rs.getInt("id_event"),
                         rs.getInt("id_salle"),
                         rs.getInt("id_terrain"),
-                        rs.getDate("reservation_date"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time")
+                        rs.getDate("reservation_date")
                 );
             }
         } catch (SQLException e) {
@@ -67,9 +63,7 @@ public class ReservationDAO implements GenericDAO<Reservation> {
                         rs.getInt("id_event"),
                         rs.getInt("id_salle"),
                         rs.getInt("id_terrain"),
-                        rs.getDate("reservation_date"),
-                        rs.getTime("start_time"),
-                        rs.getTime("end_time")
+                        rs.getDate("reservation_date")
                 ));
             }
         } catch (SQLException e) {
@@ -80,7 +74,7 @@ public class ReservationDAO implements GenericDAO<Reservation> {
 
     @Override
     public void update(Reservation reservation) {
-        String query = "UPDATE reservations SET id_user = ?, id_event = ?, id_salle = ?, id_terrain = ?, reservation_date = ?, start_time = ?, end_time = ? WHERE id_reservation = ?";
+        String query = "UPDATE reservations SET id_user = ?, id_event = ?, id_salle = ?, id_terrain = ?, reservation_date = ? WHERE id_reservation = ?";
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, reservation.getUserId());
@@ -88,9 +82,7 @@ public class ReservationDAO implements GenericDAO<Reservation> {
             stmt.setInt(3, reservation.getSalleId());
             stmt.setInt(4, reservation.getTerrainId());
             stmt.setDate(5, new java.sql.Date(reservation.getReservationDate().getTime()));
-            stmt.setTime(6, reservation.getStartTime());
-            stmt.setTime(7, reservation.getEndTime());
-            stmt.setInt(8, reservation.getId());
+            stmt.setInt(6, reservation.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,5 +99,37 @@ public class ReservationDAO implements GenericDAO<Reservation> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isSalleReserved(int salleId, Date date) {
+        String query = "SELECT COUNT(*) FROM reservations WHERE id_salle = ? AND reservation_date = ?";
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, salleId);
+            stmt.setDate(2, date);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean isTerrainReserved(int terrainId, Date date) {
+        String query = "SELECT COUNT(*) FROM reservations WHERE id_terrain = ? AND reservation_date = ?";
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, terrainId);
+            stmt.setDate(2, date);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

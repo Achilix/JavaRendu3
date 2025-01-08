@@ -7,8 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -20,16 +21,33 @@ public class DashboardController {
     private final EventDAO eventDao = new EventDAO();
 
     @FXML
-    private ListView<Event> eventsListView;
+    private TableView<Event> eventsTableView;
+
+    @FXML
+    private TableColumn<Event, Integer> idColumn;
+
+    @FXML
+    private TableColumn<Event, String> nameColumn;
+
+    @FXML
+    private TableColumn<Event, String> descriptionColumn;
+
+    @FXML
+    private TableColumn<Event, java.sql.Date> dateColumn;
 
     @FXML
     public void initialize() {
-        loadEvents();
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        loadAllEvents();
     }
 
-    private void loadEvents() {
+    private void loadAllEvents() {
         List<Event> events = eventDao.getAll();
-        eventsListView.getItems().setAll(events);
+        eventsTableView.getItems().setAll(events);
     }
 
     @FXML
@@ -39,7 +57,7 @@ public class DashboardController {
 
     @FXML
     private void handleUpdateEvent() {
-        Event selectedEvent = eventsListView.getSelectionModel().getSelectedItem();
+        Event selectedEvent = eventsTableView.getSelectionModel().getSelectedItem();
         if (selectedEvent != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateEvent.fxml"));
@@ -55,7 +73,7 @@ public class DashboardController {
                 stage.showAndWait();
 
                 // Refresh the events list after updating
-                loadEvents();
+                loadAllEvents();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -66,25 +84,13 @@ public class DashboardController {
 
     @FXML
     private void handleDeleteEvent() {
-        Event selectedEvent = eventsListView.getSelectionModel().getSelectedItem();
+        Event selectedEvent = eventsTableView.getSelectionModel().getSelectedItem();
         if (selectedEvent != null) {
             eventDao.delete(selectedEvent.getId());
-            eventsListView.getItems().remove(selectedEvent);
+            eventsTableView.getItems().remove(selectedEvent);
         } else {
             showAlert("No Selection", "Please select an event to delete.");
         }
-    }
-
-    @FXML
-    private void handleReserveSalle() {
-        // Implement the logic for reserving a salle
-        showAlert("Reserve Salle", "Reserve Salle functionality is not implemented yet.");
-    }
-
-    @FXML
-    private void handleReserveTerrain() {
-        // Implement the logic for reserving a terrain
-        showAlert("Reserve Terrain", "Reserve Terrain functionality is not implemented yet.");
     }
 
     private void loadFXML(String fxmlPath) {
@@ -100,7 +106,7 @@ public class DashboardController {
     }
 
     private void showAlert(String title, String content) {
-        Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);

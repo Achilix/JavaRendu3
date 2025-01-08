@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.UpdateEventController" spacing="10" alignment="CENTER">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.UpdateEventController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
     <Label text="Update Event" />
     <TextField fx:id="nameField" promptText="Event Name" />
     <TextField fx:id="descriptionField" promptText="Description" />

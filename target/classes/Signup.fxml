@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.SignupController" spacing="10" alignment="CENTER">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.SignupController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
     <Label text="Sign Up" />
     <TextField fx:id="nomField" promptText="Nom" />
     <TextField fx:id="prenomField" promptText="Prenom" />

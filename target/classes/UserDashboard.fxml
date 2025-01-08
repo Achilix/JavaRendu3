@@ -3,15 +3,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.DashboardController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
-    <Label text="Dashboard" />
-    <HBox spacing="10" alignment="CENTER">
-        <Button text="Create Event" onAction="#handleCreateEvent" />
-    </HBox>
-    <Label text="All Events" />
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.UserDashboardController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
+    <Label text="User Dashboard - Available Events" />
     <TableView fx:id="eventsTableView">
         <columns>
             <TableColumn fx:id="idColumn" text="ID" />
@@ -20,8 +16,5 @@
             <TableColumn fx:id="dateColumn" text="Date" />
         </columns>
     </TableView>
-    <HBox spacing="10" alignment="CENTER">
-        <Button text="Update Event" onAction="#handleUpdateEvent" />
-        <Button text="Delete Event" onAction="#handleDeleteEvent" />
-    </HBox>
+    <Button text="Back to Main" onAction="#showMainView" />
 </VBox>

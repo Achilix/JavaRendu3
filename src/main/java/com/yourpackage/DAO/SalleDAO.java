@@ -70,4 +70,15 @@ public class SalleDAO {
             e.printStackTrace();
         }
     }
+
+    public void delete(int id) {
+        String query = "DELETE FROM salles WHERE id_salles = ?";
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

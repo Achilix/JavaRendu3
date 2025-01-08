@@ -1,7 +1,6 @@
 package com.yourpackage.Model;
 
 import java.util.Date;
-import java.sql.Time;
 
 public class Reservation {
     private int id;
@@ -10,18 +9,14 @@ public class Reservation {
     private int salleId;
     private int terrainId;
     private Date reservationDate;
-    private Time startTime;
-    private Time endTime;
 
-    public Reservation(int id, int userId, int eventId, int salleId, int terrainId, Date reservationDate, Time startTime, Time endTime) {
+    public Reservation(int id, int userId, int eventId, int salleId, int terrainId, Date reservationDate) {
         this.id = id;
         this.userId = userId;
         this.eventId = eventId;
         this.salleId = salleId;
         this.terrainId = terrainId;
         this.reservationDate = reservationDate;
-        this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     // Getters and setters...
@@ -71,21 +66,5 @@ public class Reservation {
 
     public void setReservationDate(Date reservationDate) {
         this.reservationDate = reservationDate;
-    }
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public Time getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
     }
 }

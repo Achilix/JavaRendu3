@@ -4,10 +4,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.AddTerrainController" spacing="10" alignment="CENTER">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.AddTerrainController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
     <Label text="Add Terrain" />
     <TextField fx:id="terrainNameField" promptText="Terrain Name" />
     <TextField fx:id="typeField" promptText="Type" />
     <Button text="Add Terrain" onAction="#handleAddTerrain" />
+    
+    <Label text="Delete Terrain" />
+    <TextField fx:id="deleteTerrainNameField" promptText="Terrain Name to Delete" />
+    <Button text="Delete Terrain" onAction="#handleDeleteTerrain" />
+    
     <Button text="Back to Create Event" onAction="#showCreateEvent" />
 </VBox>

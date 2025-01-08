@@ -4,11 +4,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.AddSalleController" spacing="10" alignment="CENTER">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.AddSalleController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
     <Label text="Add Salle" />
     <TextField fx:id="salleNameField" promptText="Salle Name" />
     <TextField fx:id="capacityField" promptText="Capacity" />
     <TextField fx:id="locationField" promptText="Location" />
     <Button text="Add Salle" onAction="#handleAddSalle" />
+    
+    <Label text="Delete Salle" />
+    <TextField fx:id="deleteSalleNameField" promptText="Salle Name to Delete" />
+    <Button text="Delete Salle" onAction="#handleDeleteSalle" />
+    
     <Button text="Back to Create Event" onAction="#showCreateEvent" />
 </VBox>

@@ -29,7 +29,8 @@ public class TerrainDAO {
             e.printStackTrace();
         }
         return terrains;
-    } 
+    }
+
     public Terrain getByName(String name) {
         String query = "SELECT * FROM terrains WHERE nom_terrain = ?";
         try (Connection conn = DriverManager.getConnection(url, username, password);
@@ -62,6 +63,17 @@ public class TerrainDAO {
             if (rs.next()) {
                 terrain.setId(rs.getInt(1));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void delete(int id) {
+        String query = "DELETE FROM terrains WHERE id_terrain = ?";
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.UserManagementController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
+    <Label text="User Management" />
+    <TableView fx:id="userTable">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="nomColumn" text="Nom" />
+            <TableColumn fx:id="prenomColumn" text="Prenom" />
+            <TableColumn fx:id="emailColumn" text="Email" />
+            <TableColumn fx:id="typeColumn" text="Type" />
+        </columns>
+    </TableView>
+    <Button text="Delete Selected User" onAction="#handleDeleteUser" />
+    <Button text="Back to Dashboard" onAction="#showDashboard" />
+</VBox>

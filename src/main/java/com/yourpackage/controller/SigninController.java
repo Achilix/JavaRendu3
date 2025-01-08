@@ -1,6 +1,7 @@
 package com.yourpackage.controller;
 
 import com.yourpackage.DAO.UserDAO;
+import com.yourpackage.Model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,23 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class SigninController {
-
-    private final UserDAO userDao;
-
-    // No-argument constructor
-    public SigninController() {
-        this.userDao = new UserDAO(); // Initialize userDao or handle it appropriately
-    }
-
-    public SigninController(UserDAO userDao) {
-        this.userDao = userDao;
-    }
 
     @FXML
     private TextField emailField;
@@ -32,39 +21,72 @@ public class SigninController {
     @FXML
     private PasswordField passwordField;
 
+    private final UserDAO userDao = new UserDAO();
+    private int userId; // Store the user ID
+
     @FXML
     private void handleSignIn() {
         String email = emailField.getText();
         String password = passwordField.getText();
 
-        System.out.println("Attempting to sign in with email: " + email + " and password: " + password);
+        // Validate user credentials
+        boolean isAuthenticated = userDao.validateUser(email, password);
 
-        boolean success = userDao.validateUser(email, password);
+        if (isAuthenticated) {
+            User user = userDao.getByEmail(email);
+            if (user != null) {
+                userId = user.getId(); // Store the user ID
+                String userType = user.getType();
 
-        Alert alert = new Alert(success ? AlertType.INFORMATION : AlertType.ERROR);
-        alert.setTitle("Sign In");
-        alert.setHeaderText(null);
-        alert.setContentText(success ? "Sign In successful!" : "Sign In failed!");
-        alert.showAndWait();
+                if ("Student".equals(userType)) {
+                    showUserDashboard();
+                } else if ("professeur".equals(userType)) {
+                    showDashboard();
+                } else {
+                    showAlert("Error", "Unknown user type.");
+                }
 
-        if (success) {
-            loadCreateEvent();
+                // Close the current stage
+                Stage currentStage = (Stage) emailField.getScene().getWindow();
+                currentStage.close();
+            } else {
+                showAlert("Error", "User not found.");
+            }
+        } else {
+            showAlert("Error", "Invalid email or password.");
         }
     }
 
-    private void loadCreateEvent() {
+    private void showUserDashboard() {
+        openNewWindow("/UserDashboard.fxml", "User Dashboard");
+    }
+
+    private void showDashboard() {
+        openNewWindow("/Dashboard.fxml", "Dashboard");
+    }
+
+    private void openNewWindow(String fxmlPath, String title) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateEvent.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
             Stage stage = new Stage();
+            stage.setTitle(title);
             stage.setScene(new Scene(root));
             stage.show();
-
-            // Close the current stage
-            Stage currentStage = (Stage) emailField.getScene().getWindow();
-            currentStage.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    public int getUserId() {
+        return userId;
     }
 }

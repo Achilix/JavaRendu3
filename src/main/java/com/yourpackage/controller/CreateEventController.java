@@ -10,7 +10,6 @@ import com.yourpackage.Model.Salle;
 import com.yourpackage.Model.Terrain;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -18,15 +17,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class CreateEventController {
@@ -35,6 +32,7 @@ public class CreateEventController {
     private final SalleDAO salleDao = new SalleDAO();
     private final TerrainDAO terrainDao = new TerrainDAO();
     private final ReservationDAO reservationDao = new ReservationDAO();
+    private int userId; // Store the user ID
 
     @FXML
     private TextField nameField;
@@ -44,12 +42,6 @@ public class CreateEventController {
 
     @FXML
     private TextField dateField;
-
-    @FXML
-    private TextField startTimeField;
-
-    @FXML
-    private TextField endTimeField;
 
     @FXML
     private CheckBox reserveSalleCheckBox;
@@ -66,6 +58,10 @@ public class CreateEventController {
     @FXML
     private VBox contentArea; // Ensure this is defined
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @FXML
     private void handleCreate() {
         try {
@@ -73,13 +69,6 @@ public class CreateEventController {
             String description = descriptionField.getText();
             LocalDate localDate = LocalDate.parse(dateField.getText());
             Date date = Date.valueOf(localDate);
-            LocalTime localStartTime = LocalTime.parse(startTimeField.getText());
-            Time startTime = Time.valueOf(localStartTime);
-            LocalTime localEndTime = LocalTime.parse(endTimeField.getText());
-            Time endTime = Time.valueOf(localEndTime);
-
-            // Assuming you have a user ID associated with the event
-            int userId = 1; // Replace with the actual user ID
 
             Event event = new Event(0, name, description, date, userId);
             eventDao.add(event);
@@ -87,7 +76,11 @@ public class CreateEventController {
             if (reserveSalleCheckBox.isSelected()) {
                 Salle salle = salleComboBox.getValue();
                 if (salle != null) {
-                    Reservation salleReservation = new Reservation(0, userId, event.getId(), salle.getId(), 0, date, startTime, endTime);
+                    if (reservationDao.isSalleReserved(salle.getId(), date)) {
+                        showAlert("Error", "Salle is already reserved for the selected date.");
+                        return;
+                    }
+                    Reservation salleReservation = new Reservation(0, userId, event.getId(), salle.getId(), 0, date);
                     reservationDao.add(salleReservation);
                 } else {
                     showAlert("Error", "Please select a Salle.");
@@ -97,7 +90,11 @@ public class CreateEventController {
             if (reserveTerrainCheckBox.isSelected()) {
                 Terrain terrain = terrainComboBox.getValue();
                 if (terrain != null) {
-                    Reservation terrainReservation = new Reservation(0, userId, event.getId(), 0, terrain.getId(), date, startTime, endTime);
+                    if (reservationDao.isTerrainReserved(terrain.getId(), date)) {
+                        showAlert("Error", "Terrain is already reserved for the selected date.");
+                        return;
+                    }
+                    Reservation terrainReservation = new Reservation(0, userId, event.getId(), 0, terrain.getId(), date);
                     reservationDao.add(terrainReservation);
                 } else {
                     showAlert("Error", "Please select a Terrain.");
@@ -131,18 +128,23 @@ public class CreateEventController {
     }
 
     @FXML
+    private void showUserManagement() {
+        openNewWindow("/UserManagement.fxml", "User Management");
+    }
+
+    @FXML
     public void initialize() {
         loadSalles();
         loadTerrains();
     }
 
-    private void loadSalles() {
+    public void loadSalles() {
         List<Salle> salles = salleDao.getAll();
         salleComboBox.getItems().setAll(salles);
         System.out.println("Loaded Salles: " + salles); // Debugging statement
     }
 
-    private void loadTerrains() {
+    public void loadTerrains() {
         List<Terrain> terrains = terrainDao.getAll();
         terrainComboBox.getItems().setAll(terrains);
         System.out.println("Loaded Terrains: " + terrains); // Debugging statement
@@ -157,8 +159,13 @@ public class CreateEventController {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+
+            // Refresh data after the window is closed
+            loadSalles();
+            loadTerrains();
         } catch (IOException e) {
             e.printStackTrace();
+            showAlert("Error", "Unable to open the new window.");
         }
     }
 

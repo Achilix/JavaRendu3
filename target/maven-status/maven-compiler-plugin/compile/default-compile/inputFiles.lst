@@ -4,6 +4,7 @@ C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackag
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\controller\DashboardController.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\controller\MainController.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\DAO\SalleDAO.java
+C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\controller\UserManagementController.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\DAO\TerrainDAO.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\DAO\ReservationDAO.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\DAO\EventDAO.java
@@ -17,6 +18,7 @@ C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackag
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\App.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\Model\Terrain.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\controller\SigninController.java
+C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\controller\UserDashboardController.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\controller\CreateEventController.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\controller\UserController.java
 C:\Users\hatim\OneDrive\Desktop\app\javafx-jdbc-dao\src\main\java\com\yourpackage\Model\User.java
