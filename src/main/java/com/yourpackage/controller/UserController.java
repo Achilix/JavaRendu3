@@ -23,7 +23,6 @@ public class UserController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
-        // Add your submission logic here
 
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Submission");

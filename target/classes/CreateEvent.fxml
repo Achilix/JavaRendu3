@@ -5,20 +5,23 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.CreateEventController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Add Salle" onAction="#showAddSalle" />
+        <Button text="Add Terrain" onAction="#showAddTerrain" />
+        <Button text="Manage Users" onAction="#showUserManagement" />
+        <Button text="Back to Dashboard" onAction="#showDashboard" />
+    </HBox>
     <Label text="Create Event" />
     <TextField fx:id="nameField" promptText="Event Name" />
     <TextField fx:id="descriptionField" promptText="Description" />
     <TextField fx:id="dateField" promptText="Date (YYYY-MM-DD)" />
-    <CheckBox fx:id="reserveSalleCheckBox" text="Reserve Salle" />
-    <ComboBox fx:id="salleComboBox" promptText="Select Salle" />
-    <CheckBox fx:id="reserveTerrainCheckBox" text="Reserve Terrain" />
-    <ComboBox fx:id="terrainComboBox" promptText="Select Terrain" />
+    <CheckBox fx:id="reserveSalleCheckBox" text="Reserve Salle" onAction="#toggleSalleSelection" />
+    <ComboBox fx:id="salleComboBox" promptText="Select Salle" visible="false" />
+    <CheckBox fx:id="reserveTerrainCheckBox" text="Reserve Terrain" onAction="#toggleTerrainSelection" />
+    <ComboBox fx:id="terrainComboBox" promptText="Select Terrain" visible="false" />
     <Button text="Create" onAction="#handleCreate" />
-    <Button text="Add Salle" onAction="#showAddSalle" />
-    <Button text="Add Terrain" onAction="#showAddTerrain" />
-    <Button text="Back to Dashboard" onAction="#showDashboard" />
-    <Button text="Manage Users" onAction="#showUserManagement" />
     <VBox fx:id="contentArea" />
 </VBox>

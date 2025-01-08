@@ -54,7 +54,15 @@ public class CreateEventController {
 
     @FXML
     private ComboBox<Terrain> terrainComboBox;
+    @FXML
+    private void toggleSalleSelection() {
+        salleComboBox.setVisible(reserveSalleCheckBox.isSelected());
+    }
 
+    @FXML
+    private void toggleTerrainSelection() {
+        terrainComboBox.setVisible(reserveTerrainCheckBox.isSelected());
+    }
     @FXML
     private VBox contentArea; // Ensure this is defined
 
@@ -129,7 +137,7 @@ public class CreateEventController {
 
     @FXML
     private void showUserManagement() {
-        openNewWindow("/UserManagement.fxml", "User Management");
+        openNewWindow("/UserManagment.fxml", "User Management");
     }
 
     @FXML

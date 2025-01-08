@@ -17,8 +17,6 @@ public class UserDAO implements GenericDAO<User> {
              PreparedStatement stmt = conn.prepareStatement(query)) {
             if (conn != null) {
                 System.out.println("Connected to the database!");
-            } else {
-                System.out.println("Failed to make connection!");
             }
             stmt.setString(1, user.getNom());
             stmt.setString(2, user.getPrenom());

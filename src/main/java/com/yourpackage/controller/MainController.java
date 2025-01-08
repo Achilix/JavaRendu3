@@ -15,16 +15,6 @@ public class MainController {
     private StackPane contentPane;
 
     @FXML
-    private void showUtilisateurView() {
-        // Load and display the Utilisateur view
-    }
-
-    @FXML
-    private void showEvenementView() {
-        // Load and display the Événements view
-    }
-
-    @FXML
     private void handleSignIn() {
         loadFXML("/Signin.fxml");
     }
