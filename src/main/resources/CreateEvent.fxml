@@ -9,10 +9,7 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.CreateEventController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
     <HBox spacing="10" alignment="CENTER">
-        <Button text="Add Salle" onAction="#showAddSalle" />
-        <Button text="Add Terrain" onAction="#showAddTerrain" />
-        <Button text="Manage Users" onAction="#showUserManagement" />
-        <Button text="Back to Dashboard" onAction="#showDashboard" />
+
     </HBox>
     <Label text="Create Event" />
     <TextField fx:id="nameField" promptText="Event Name" />

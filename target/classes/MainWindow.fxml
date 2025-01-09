@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.MainWindowController" stylesheets="@styles.css">
+    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <Tab text="Manage Event">
+            <VBox alignment="CENTER" spacing="20">
+                <fx:include source="CreateEvent.fxml"/>
+            </VBox>
+        </Tab>
+        <Tab text="Manage Salle">
+            <VBox alignment="CENTER" spacing="20">
+                <fx:include source="AddSalle.fxml"/>
+            </VBox>
+        </Tab>
+        <Tab text="Manage Terrain">
+            <VBox alignment="CENTER" spacing="20">
+                <fx:include source="AddTerrain.fxml"/>
+            </VBox>
+        </Tab>
+        <Tab text="Manage Users">
+            <VBox alignment="CENTER" spacing="20">
+                <fx:include source="UserManagment.fxml"/>
+            </VBox>
+        </Tab>
+        <Tab text="Event Dashboard">
+            <VBox alignment="CENTER" spacing="20">
+                <fx:include source="Dashboard.fxml"/>
+            </VBox>
+        </Tab>
+    </TabPane>
+</AnchorPane>

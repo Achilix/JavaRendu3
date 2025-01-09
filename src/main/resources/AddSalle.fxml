@@ -14,6 +14,4 @@
     <Label text="Delete Salle" />
     <TextField fx:id="deleteSalleNameField" promptText="Salle Name to Delete" />
     <Button text="Delete Salle" onAction="#handleDeleteSalle" />
-    
-    <Button text="Back to Create Event" onAction="#showCreateEvent" />
-</VBox>
+    </VBox>

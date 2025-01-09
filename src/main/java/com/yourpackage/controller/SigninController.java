@@ -62,7 +62,7 @@ public class SigninController {
     }
 
     private void showDashboard() {
-        openNewWindow("/Dashboard.fxml", "Dashboard");
+        openNewWindow("/MainWindow.fxml", "Dashboard");
     }
 
     private void openNewWindow(String fxmlPath, String title) {

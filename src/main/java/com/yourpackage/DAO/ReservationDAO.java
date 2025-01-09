@@ -132,4 +132,27 @@ public class ReservationDAO implements GenericDAO<Reservation> {
         }
         return false;
     }
+
+    public Reservation getReservationByEventId(int eventId) {
+        Reservation reservation = null;
+        String query = "SELECT * FROM reservations WHERE id_event = ?";
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, eventId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                reservation = new Reservation(
+                    resultSet.getInt("id_reservation"),
+                    resultSet.getInt("id_user"),
+                    resultSet.getInt("id_event"),
+                    resultSet.getInt("id_salle"),
+                    resultSet.getInt("id_terrain"),
+                    resultSet.getDate("reservation_date")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reservation;
+    }
 }

@@ -78,4 +78,24 @@ public class TerrainDAO {
             e.printStackTrace();
         }
     }
+
+    public Terrain getById(int id) {
+        Terrain terrain = null;
+        String query = "SELECT * FROM terrains WHERE id = ?";
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                terrain = new Terrain(
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getString("type")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return terrain;
+    }
 }

@@ -54,6 +54,7 @@ public class CreateEventController {
 
     @FXML
     private ComboBox<Terrain> terrainComboBox;
+
     @FXML
     private void toggleSalleSelection() {
         salleComboBox.setVisible(reserveSalleCheckBox.isSelected());
@@ -63,6 +64,7 @@ public class CreateEventController {
     private void toggleTerrainSelection() {
         terrainComboBox.setVisible(reserveTerrainCheckBox.isSelected());
     }
+
     @FXML
     private VBox contentArea; // Ensure this is defined
 

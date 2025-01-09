@@ -81,4 +81,25 @@ public class SalleDAO {
             e.printStackTrace();
         }
     }
+
+    public Salle getById(int id) {
+        Salle salle = null;
+        String query = "SELECT * FROM salles WHERE id_salles = ?";
+        try (Connection connection = DriverManager.getConnection(url, username, password);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                salle = new Salle(
+                    resultSet.getInt("id_salles"),
+                    resultSet.getString("nom_salle"),
+                    resultSet.getInt("capacity"),
+                    resultSet.getString("location")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return salle;
+    }
 }

@@ -14,5 +14,4 @@
     <TextField fx:id="deleteTerrainNameField" promptText="Terrain Name to Delete" />
     <Button text="Delete Terrain" onAction="#handleDeleteTerrain" />
     
-    <Button text="Back to Create Event" onAction="#showCreateEvent" />
 </VBox>

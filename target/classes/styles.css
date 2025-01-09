@@ -1,23 +1,27 @@
 .root {
     -fx-font-family: "Arial";
-    -fx-padding: 10;
+    -fx-padding: 20;
+    -fx-background-color: #000000; /* Black background */
+    -fx-text-fill: #ffffff; /* White text */
 }
 
 .label {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
+    -fx-text-fill: #ffffff; /* White text */
 }
 
 .button {
-    -fx-background-color: #4CAF50;
-    -fx-text-fill: white;
+    -fx-background-color: #000000; /* Black background */
+    -fx-text-fill: #ffffff; /* White text */
     -fx-padding: 10 20;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
+    -fx-border-color: #ffffff; /* White border */
 }
 
 .button:hover {
-    -fx-background-color: #45a049;
+    -fx-background-color: #333333; /* Darker black background */
 }
 
 .text-field, .password-field, .combo-box {
@@ -25,14 +29,52 @@
     -fx-border-color: #ccc;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: #ffffff; /* White text */
 }
 
 .vbox {
-    -fx-spacing: 10;
+    -fx-spacing: 20;
     -fx-alignment: center;
 }
 
 .hbox {
-    -fx-spacing: 10;
+    -fx-spacing: 20;
     -fx-alignment: center;
+}
+
+.tab-pane {
+    -fx-background-color: #000000; /* Black background */
+}
+
+.tab {
+    -fx-background-color: #3c3f41;
+    -fx-text-fill: #ffffff; /* White text */
+}
+
+.tab:selected {
+    -fx-background-color: #4CAF50;
+}
+
+.table-view {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-text-fill: #000000; /* Black text */
+    -fx-border-color: #ffffff; /* White border */
+}
+
+.table-column-header {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-text-fill: #000000 !important; /* Black text */
+    -fx-font-weight: bold; /* Bold text */
+}
+
+.table-row-cell {
+    -fx-background-color: #ffffff; /* White background */
+    -fx-text-fill: #000000; /* Black text */
+    -fx-border-color: #ffffff; /* White border */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #4CAF50; /* Green background */
+    -fx-text-fill: #ffffff; /* White text */
 }

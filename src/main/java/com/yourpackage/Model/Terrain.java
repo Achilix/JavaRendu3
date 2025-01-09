@@ -1,15 +1,20 @@
 package com.yourpackage.Model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Terrain {
     private int id;
-    private String name;
-    private String type; 
+    private StringProperty name;
+    private String type;
 
-    public Terrain() {}
+    public Terrain() {
+        this.name = new SimpleStringProperty();
+    }
 
     public Terrain(int id, String name, String type) {
         this.id = id;
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.type = type;
     }
 
@@ -22,11 +27,11 @@ public class Terrain {
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public String getType() {
@@ -37,8 +42,12 @@ public class Terrain {
         this.type = type;
     }
 
+    public StringProperty nameProperty() {
+        return name;
+    }
+
     @Override
     public String toString() {
-        return "Terrain [id=" + id + ", name=" + name + ", type=" + type + "]";
+        return String.format("%s (Type: %s)", name.get(), type);
     }
 }

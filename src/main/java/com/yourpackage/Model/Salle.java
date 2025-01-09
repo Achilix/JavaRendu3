@@ -1,16 +1,21 @@
 package com.yourpackage.Model;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Salle {
     private int id;
-    private String name;
+    private StringProperty name;
     private int capacity;
     private String location;
 
-    
-    public Salle() {}
+    public Salle() {
+        this.name = new SimpleStringProperty();
+    }
 
     public Salle(int id, String name, int capacity, String location) {
         this.id = id;
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.capacity = capacity;
         this.location = location;
     }
@@ -24,11 +29,11 @@ public class Salle {
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public int getCapacity() {
@@ -47,8 +52,12 @@ public class Salle {
         this.location = location;
     }
 
+    public StringProperty nameProperty() {
+        return name;
+    }
+
     @Override
     public String toString() {
-        return "Salle [id=" + id + ", name=" + name + ", capacity=" + capacity + ", location=" + location + "]";
+        return String.format("%s (Capacity: %d, Location: %s)", name.get(), capacity, location);
     }
 }
