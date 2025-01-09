@@ -6,12 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AddTerrainController {
 
@@ -20,11 +22,16 @@ public class AddTerrainController {
     @FXML
     private TextField typeField;
     @FXML
-    private TextField deleteTerrainNameField;
+    private ComboBox<String> deleteTerrainComboBox;
     @FXML
     private VBox contentArea;
 
     private TerrainDAO terrainDao = new TerrainDAO();
+
+    @FXML
+    public void initialize() {
+        loadTerrains();
+    }
 
     @FXML
     private void handleAddTerrain() {
@@ -51,9 +58,9 @@ public class AddTerrainController {
 
     @FXML
     private void handleDeleteTerrain() {
-        String name = deleteTerrainNameField.getText();
-        if (name.isEmpty()) {
-            showAlert("Error", "Please enter the name of the Terrain to delete.");
+        String name = deleteTerrainComboBox.getValue();
+        if (name == null || name.isEmpty()) {
+            showAlert("Error", "Please select a Terrain to delete.");
             return;
         }
 
@@ -69,7 +76,7 @@ public class AddTerrainController {
         }
 
         // Close the current stage
-        Stage currentStage = (Stage) deleteTerrainNameField.getScene().getWindow();
+        Stage currentStage = (Stage) deleteTerrainComboBox.getScene().getWindow();
         currentStage.close();
     }
 
@@ -105,6 +112,13 @@ public class AddTerrainController {
             contentArea.getChildren().setAll(node);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void loadTerrains() {
+        List<Terrain> terrains = terrainDao.getAll();
+        for (Terrain terrain : terrains) {
+            deleteTerrainComboBox.getItems().add(terrain.getName());
         }
     }
 }

@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.MainController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
-    <Label text="Welcome to Event Management" styleClass="header-label"/>
-    <HBox spacing="10" alignment="CENTER">
+    <Label text="Welcome to the Event Management Website of EST Essaouira" styleClass="header-label"/>
+    <Label text="Manage your events efficiently and effectively." styleClass="description-label"/>
+    
+   
+    
+    <Label text="About Us" styleClass="header-label"/>
+    <TextArea editable="false" wrapText="true" styleClass="description-textarea">
+        Welcome to the Event Management Website of EST Essaouira. This application is designed to help you manage your events efficiently and effectively. 
+        EST Essaouira, or the School of Technology Essaouira, is a prestigious institution known for its commitment to excellence in education and innovation. 
+        Our mission is to provide high-quality education and training to our students, preparing them for successful careers in their chosen fields. 
+        We are proud to offer a wide range of programs and services that support the academic and professional development of our students.
+
+        Thank you for choosing our event management platform. We are here to support you every step of the way.
+    </TextArea>
+     <HBox spacing="10" alignment="CENTER">
         <Button text="Sign In" onAction="#handleSignIn" />
         <Button text="Sign Up" onAction="#handleSignUp" />
     </HBox>
-    <Label text="Manage your events efficiently and effectively." styleClass="description-label"/>
-
 </VBox>

@@ -36,15 +36,17 @@
 .vbox {
     -fx-spacing: 20;
     -fx-alignment: center;
+    -fx-background-color: #000000; /* Black background */
 }
 
 .hbox {
     -fx-spacing: 20;
     -fx-alignment: center;
+    -fx-background-color: #000000; /* Black background */
 }
 
 .tab-pane {
-    -fx-background-color: #000000; /* Black background */
+    -fx-background-color: #333333; /* Darker background for the nav bar */
 }
 
 .tab {
@@ -53,7 +55,7 @@
 }
 
 .tab:selected {
-    -fx-background-color: #4CAF50;
+    -fx-background-color: #4CAF50; /* Green background for selected tab */
 }
 
 .table-view {
@@ -78,3 +80,5 @@
     -fx-background-color: #4CAF50; /* Green background */
     -fx-text-fill: #ffffff; /* White text */
 }
+
+/* Additional styles for the navigation bar */

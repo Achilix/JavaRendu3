@@ -5,29 +5,29 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.MainWindowController" stylesheets="@styles.css">
-    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+    <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" styleClass="nav-tab-pane">
         <Tab text="Manage Event">
-            <VBox alignment="CENTER" spacing="20">
+            <VBox alignment="CENTER" spacing="20" styleClass="vbox">
                 <fx:include source="CreateEvent.fxml"/>
             </VBox>
         </Tab>
         <Tab text="Manage Salle">
-            <VBox alignment="CENTER" spacing="20">
+            <VBox alignment="CENTER" spacing="20" styleClass="vbox">
                 <fx:include source="AddSalle.fxml"/>
             </VBox>
         </Tab>
         <Tab text="Manage Terrain">
-            <VBox alignment="CENTER" spacing="20">
+            <VBox alignment="CENTER" spacing="20" styleClass="vbox">
                 <fx:include source="AddTerrain.fxml"/>
             </VBox>
         </Tab>
         <Tab text="Manage Users">
-            <VBox alignment="CENTER" spacing="20">
+            <VBox alignment="CENTER" spacing="20" styleClass="vbox">
                 <fx:include source="UserManagment.fxml"/>
             </VBox>
         </Tab>
         <Tab text="Event Dashboard">
-            <VBox alignment="CENTER" spacing="20">
+            <VBox alignment="CENTER" spacing="20" styleClass="vbox">
                 <fx:include source="Dashboard.fxml"/>
             </VBox>
         </Tab>

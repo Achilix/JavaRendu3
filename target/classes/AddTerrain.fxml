@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
@@ -11,7 +12,6 @@
     <Button text="Add Terrain" onAction="#handleAddTerrain" />
     
     <Label text="Delete Terrain" />
-    <TextField fx:id="deleteTerrainNameField" promptText="Terrain Name to Delete" />
+    <ComboBox fx:id="deleteTerrainComboBox" promptText="Select Terrain to Delete" />
     <Button text="Delete Terrain" onAction="#handleDeleteTerrain" />
-    
 </VBox>

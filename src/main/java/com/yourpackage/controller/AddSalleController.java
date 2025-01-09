@@ -6,11 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import java.io.IOException;
+import java.util.List;
 
 public class AddSalleController {
 
@@ -26,10 +29,15 @@ public class AddSalleController {
     private TextField locationField;
 
     @FXML
-    private TextField deleteSalleNameField;
+    private ComboBox<String> deleteSalleComboBox;
 
     @FXML
     private VBox contentArea;
+
+    @FXML
+    public void initialize() {
+        loadSalles();
+    }
 
     @FXML
     private void handleAddSalle() {
@@ -52,9 +60,9 @@ public class AddSalleController {
 
     @FXML
     private void handleDeleteSalle() {
-        String name = deleteSalleNameField.getText();
-        if (name.isEmpty()) {
-            showAlert("Error", "Please enter the name of the Salle to delete.");
+        String name = deleteSalleComboBox.getValue();
+        if (name == null || name.isEmpty()) {
+            showAlert("Error", "Please select a Salle to delete.");
             return;
         }
 
@@ -70,7 +78,7 @@ public class AddSalleController {
         }
 
         // Close the current stage
-        Stage currentStage = (Stage) deleteSalleNameField.getScene().getWindow();
+        Stage currentStage = (Stage) deleteSalleComboBox.getScene().getWindow();
         currentStage.close();
     }
 
@@ -106,6 +114,13 @@ public class AddSalleController {
             contentArea.getChildren().setAll(node);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void loadSalles() {
+        List<Salle> salles = salleDao.getAll();
+        for (Salle salle : salles) {
+            deleteSalleComboBox.getItems().add(salle.getName());
         }
     }
 }

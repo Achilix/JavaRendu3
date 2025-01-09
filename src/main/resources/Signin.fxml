@@ -7,7 +7,12 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.SigninController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
     <Label text="Sign In" />
+    
+    <Label text="Email" />
     <TextField fx:id="emailField" promptText="Email" />
+    
+    <Label text="Password" />
     <PasswordField fx:id="passwordField" promptText="Password" />
+    
     <Button text="Sign In" onAction="#handleSignIn" />
 </VBox>
