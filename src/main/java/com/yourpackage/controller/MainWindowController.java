@@ -10,6 +10,5 @@ public class MainWindowController {
 
     @FXML
     public void initialize() {
-        // Initialization logic if needed
     }
 }

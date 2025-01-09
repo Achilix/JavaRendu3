@@ -14,7 +14,6 @@
             <TableColumn fx:id="idColumn" text="ID" />
             <TableColumn fx:id="nameColumn" text="Name" />
             <TableColumn fx:id="descriptionColumn" text="Description" />
-            <TableColumn fx:id="dateColumn" text="Date" />
             <TableColumn fx:id="reservedSalleColumn" text="Reserved Salle" />
             <TableColumn fx:id="reservedTerrainColumn" text="Reserved Terrain" />
             <TableColumn fx:id="reservedDateColumn" text="Reserved Date" />

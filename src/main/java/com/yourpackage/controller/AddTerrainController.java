@@ -3,16 +3,11 @@ package com.yourpackage.controller;
 import com.yourpackage.DAO.TerrainDAO;
 import com.yourpackage.Model.Terrain;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.List;
 
 public class AddTerrainController {
@@ -23,8 +18,6 @@ public class AddTerrainController {
     private TextField typeField;
     @FXML
     private ComboBox<String> deleteTerrainComboBox;
-    @FXML
-    private VBox contentArea;
 
     private TerrainDAO terrainDao = new TerrainDAO();
 
@@ -48,12 +41,7 @@ public class AddTerrainController {
 
         showAlert("Add Terrain", "Terrain added successfully!");
 
-        // Refresh the data in CreateEventController
-        refreshCreateEventController();
-
-        // Close the current stage
-        Stage currentStage = (Stage) terrainNameField.getScene().getWindow();
-        currentStage.close();
+        loadTerrains();
     }
 
     @FXML
@@ -69,29 +57,9 @@ public class AddTerrainController {
             terrainDao.delete(terrain.getId());
             showAlert("Delete Terrain", "Terrain deleted successfully!");
 
-            // Refresh the data in CreateEventController
-            refreshCreateEventController();
+            loadTerrains();
         } else {
             showAlert("Error", "Terrain not found.");
-        }
-
-        // Close the current stage
-        Stage currentStage = (Stage) deleteTerrainComboBox.getScene().getWindow();
-        currentStage.close();
-    }
-
-    @FXML
-    private void showCreateEvent() {
-        loadView("/CreateEvent.fxml");
-    }
-
-    private void loadView(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Node node = loader.load();
-            contentArea.getChildren().setAll(node);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -103,19 +71,8 @@ public class AddTerrainController {
         alert.showAndWait();
     }
 
-    private void refreshCreateEventController() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateEvent.fxml"));
-            Node node = loader.load();
-            CreateEventController controller = loader.getController();
-            controller.loadTerrains();
-            contentArea.getChildren().setAll(node);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void loadTerrains() {
+        deleteTerrainComboBox.getItems().clear();
         List<Terrain> terrains = terrainDao.getAll();
         for (Terrain terrain : terrains) {
             deleteTerrainComboBox.getItems().add(terrain.getName());

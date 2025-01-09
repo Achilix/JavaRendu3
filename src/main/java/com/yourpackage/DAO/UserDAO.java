@@ -22,9 +22,9 @@ public class UserDAO implements GenericDAO<User> {
             stmt.setString(2, user.getPrenom());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPassword());
-            stmt.setString(5, user.getType() != null ? user.getType() : "Student"); // Set default type to "Student" if not provided
+            stmt.setString(5, user.getType() != null ? user.getType() : "Student");
             int rowsAffected = stmt.executeUpdate();
-            System.out.println("Rows affected: " + rowsAffected); // Log the number of rows affected
+            System.out.println("Rows affected: " + rowsAffected); 
         } catch (SQLException e) {
             System.err.println("SQL Exception occurred while adding user: " + e.getMessage());
             e.printStackTrace();

@@ -8,11 +8,9 @@ public class User {
     private String password;
     private String type;
 
-    // No-argument constructor
     public User() {
     }
 
-    // Constructor with parameters
     public User(int id, String nom, String prenom, String email, String password, String type) {
         this.id = id;
         this.nom = nom;
@@ -22,7 +20,6 @@ public class User {
         this.type = type;
     }
 
-    // Getters and setters
     public int getId() {
         return id;
     }

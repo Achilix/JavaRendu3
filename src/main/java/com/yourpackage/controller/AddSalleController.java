@@ -3,16 +3,11 @@ package com.yourpackage.controller;
 import com.yourpackage.DAO.SalleDAO;
 import com.yourpackage.Model.Salle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.List;
 
 public class AddSalleController {
@@ -32,9 +27,6 @@ public class AddSalleController {
     private ComboBox<String> deleteSalleComboBox;
 
     @FXML
-    private VBox contentArea;
-
-    @FXML
     public void initialize() {
         loadSalles();
     }
@@ -50,12 +42,7 @@ public class AddSalleController {
 
         showAlert("Add Salle", "Salle added successfully!");
 
-        // Refresh the data in CreateEventController
-        refreshCreateEventController();
-
-        // Close the current stage
-        Stage currentStage = (Stage) salleNameField.getScene().getWindow();
-        currentStage.close();
+        loadSalles();
     }
 
     @FXML
@@ -71,29 +58,9 @@ public class AddSalleController {
             salleDao.delete(salle.getId());
             showAlert("Delete Salle", "Salle deleted successfully!");
 
-            // Refresh the data in CreateEventController
-            refreshCreateEventController();
+            loadSalles();
         } else {
             showAlert("Error", "Salle not found.");
-        }
-
-        // Close the current stage
-        Stage currentStage = (Stage) deleteSalleComboBox.getScene().getWindow();
-        currentStage.close();
-    }
-
-    @FXML
-    private void showCreateEvent() {
-        loadView("/CreateEvent.fxml");
-    }
-
-    private void loadView(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Node node = loader.load();
-            contentArea.getChildren().setAll(node);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -105,19 +72,8 @@ public class AddSalleController {
         alert.showAndWait();
     }
 
-    private void refreshCreateEventController() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CreateEvent.fxml"));
-            Node node = loader.load();
-            CreateEventController controller = loader.getController();
-            controller.loadSalles();
-            contentArea.getChildren().setAll(node);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void loadSalles() {
+        deleteSalleComboBox.getItems().clear();
         List<Salle> salles = salleDao.getAll();
         for (Salle salle : salles) {
             deleteSalleComboBox.getItems().add(salle.getName());

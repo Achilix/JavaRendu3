@@ -15,4 +15,6 @@
     <Label text="Delete Salle" />
     <ComboBox fx:id="deleteSalleComboBox" promptText="Select Salle to Delete" />
     <Button text="Delete Salle" onAction="#handleDeleteSalle" />
+    
+    <VBox fx:id="contentArea" />
 </VBox>

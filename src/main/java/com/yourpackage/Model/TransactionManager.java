@@ -20,7 +20,7 @@ public class TransactionManager {
                 operation.run(conn); 
                 conn.commit(); 
             } catch (Exception e) {
-                conn.rollback(); // Fixed the comment syntax
+                conn.rollback(); 
                 throw new RuntimeException("Transaction failed and rolled back", e);
             }
         } catch (SQLException e) {

@@ -19,7 +19,6 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    // Getters and setters...
     public int getId() {
         return id;
     }

@@ -34,21 +34,27 @@ public class UpdateEventController {
 
     @FXML
     private void handleUpdate() {
+        String name = nameField.getText();
+        String description = descriptionField.getText();
+        String date = dateField.getText();
+
+        if (name.isEmpty() || description.isEmpty() || date.isEmpty()) {
+            showAlert("Error", "Please fill in all fields.");
+            return;
+        }
+
         try {
-            String name = nameField.getText();
-            String description = descriptionField.getText();
             LocalDate localDate = LocalDate.parse(dateField.getText());
-            Date date = Date.valueOf(localDate);
+            Date dateSql = Date.valueOf(localDate);
 
             event.setName(name);
             event.setDescription(description);
-            event.setDate(date);
+            event.setDate(dateSql);
 
             eventDao.update(event);
 
             showAlert("Update Event", "Event updated successfully!");
 
-            // Close the current stage
             Stage currentStage = (Stage) nameField.getScene().getWindow();
             currentStage.close();
         } catch (Exception e) {

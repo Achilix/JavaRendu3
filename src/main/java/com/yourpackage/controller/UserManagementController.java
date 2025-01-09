@@ -63,7 +63,7 @@ public class UserManagementController {
         if (selectedUser != null) {
             userDao.delete(selectedUser.getId());
             showAlert("Delete User", "User deleted successfully!");
-            loadUsers(); // Refresh the table
+            loadUsers(); 
         } else {
             showAlert("Error", "Please select a user to delete.");
         }

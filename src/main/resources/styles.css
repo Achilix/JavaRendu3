@@ -1,84 +1,140 @@
+/* Root Styles */
 .root {
-    -fx-font-family: "Arial";
+    -fx-font-family: "Roboto", Arial, sans-serif; /* Police moderne et épurée */
     -fx-padding: 20;
-    -fx-background-color: #000000; /* Black background */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-background-color: linear-gradient(to bottom, #1A202C, #2D3748); /* Dégradé bleu nuit */
+    -fx-text-fill: #E2E8F0; /* Texte gris clair */
 }
 
+/* Label Styles */
 .label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 20px;
+    -fx-font-weight: 600; /* Semi-bold pour un style propre */
+    -fx-text-fill: #63B3ED; /* Bleu ciel élégant */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 4, 0, 0, 2); /* Ombre douce */
 }
 
+/* Button Styles */
 .button {
-    -fx-background-color: #000000; /* Black background */
-    -fx-text-fill: #ffffff; /* White text */
-    -fx-padding: 10 20;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-border-color: #ffffff; /* White border */
+    -fx-background-color: linear-gradient(to bottom, #3182CE, #2B6CB0); /* Dégradé bleu moderne */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+    -fx-padding: 12 24;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 3); /* Ombre subtile */
+    -fx-cursor: hand;
+    -fx-transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .button:hover {
-    -fx-background-color: #333333; /* Darker black background */
+    -fx-background-color: linear-gradient(to bottom, #63B3ED, #3182CE); /* Bleu plus clair au survol */
+    -fx-transform: scale(1.05); /* Agrandissement léger */
 }
 
+.button:pressed {
+    -fx-background-color: #1E4E8C; /* Bleu profond au clic */
+    -fx-effect: none;
+}
+
+/* Input Fields Styles */
 .text-field, .password-field, .combo-box {
-    -fx-padding: 10;
-    -fx-border-color: #ccc;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-    -fx-background-color: #3c3f41;
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-padding: 14;
+    -fx-border-color: #63B3ED; /* Bordure bleu ciel */
+    -fx-border-width: 2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-background-color: #2D3748; /* Fond gris bleu foncé */
+    -fx-text-fill: #E2E8F0; /* Texte gris clair */
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2); /* Ombre douce */
+    -fx-transition: border-color 0.3s ease;
 }
 
-.vbox {
-    -fx-spacing: 20;
+.text-field:focused, .password-field:focused, .combo-box:focused {
+    -fx-border-color: #4299E1; /* Couleur accentuée au focus */
+}
+
+/* VBox and HBox Styles */
+.vbox, .hbox {
+    -fx-spacing: 16;
     -fx-alignment: center;
-    -fx-background-color: #000000; /* Black background */
+    -fx-background-color: transparent;
 }
 
-.hbox {
-    -fx-spacing: 20;
-    -fx-alignment: center;
-    -fx-background-color: #000000; /* Black background */
-}
-
+/* Tab Pane Styles */
 .tab-pane {
-    -fx-background-color: #333333; /* Darker background for the nav bar */
+    -fx-background-color: #1A202C; /* Fond sombre élégant */
+    -fx-tab-min-height: 50;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5); /* Ombre douce */
 }
 
 .tab {
-    -fx-background-color: #3c3f41;
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-background-color: #35404f; /* Fond gris bleu foncé */
+    -fx-text-fill: #f3f3f3; /* Texte gris moyen */
+    -fx-font-size: 16px;
+    -fx-padding: 10;
+    -fx-border-radius: 10 10 0 0; /* Coins arrondis uniquement en haut */
 }
 
 .tab:selected {
-    -fx-background-color: #4CAF50; /* Green background for selected tab */
+    -fx-background-color: #4299E1; /* Bleu vif pour l'onglet sélectionné */
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
 }
 
+/* Table View Styles */
 .table-view {
-    -fx-background-color: #ffffff; /* White background */
-    -fx-text-fill: #000000; /* Black text */
-    -fx-border-color: #ffffff; /* White border */
+    -fx-background-color: #2D3748; /* Fond gris bleu foncé */
+    -fx-border-color: transparent;
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 10, 0, 0, 5);
 }
 
 .table-column-header {
-    -fx-background-color: #ffffff; /* White background */
-    -fx-text-fill: #000000 !important; /* Black text */
-    -fx-font-weight: bold; /* Bold text */
+    -fx-background-color: #3182CE; /* Bleu moderne */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
 }
 
 .table-row-cell {
-    -fx-background-color: #ffffff; /* White background */
-    -fx-text-fill: #000000; /* Black text */
-    -fx-border-color: #ffffff; /* White border */
+    -fx-background-color: #ffffff; /* Fond gris bleu foncé */
+    -fx-text-fill: #000000; /* Texte gris clair */
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #272626; /* Bleu vif au survol */
+    -fx-text-fill: #efefef;
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #4CAF50; /* Green background */
-    -fx-text-fill: #ffffff; /* White text */
+    -fx-background-color: #2B6CB0; /* Bleu profond pour la sélection */
+    -fx-text-fill: #FFFFFF;
 }
 
-/* Additional styles for the navigation bar */
+/* Navigation Bar Styles */
+.navigation-bar {
+    -fx-background-color: linear-gradient(to right, #2B6CB0, #3182CE); /* Dégradé bleu moderne */
+    -fx-padding: 15;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 10, 0, 0, 5); /* Ombre douce */
+}
+
+.navigation-bar .button {
+    -fx-background-color: transparent;
+    -fx-border-color: #63B3ED; /* Bordure bleu ciel */
+    -fx-text-fill: #ffffff; /* Texte blanc */
+    -fx-font-size: 15px;
+    -fx-padding: 10 20;
+    -fx-transition: all 0.3s ease;
+}
+
+.navigation-bar .button:hover {
+    -fx-background-color: #63B3ED; /* Fond bleu ciel au survol */
+    -fx-text-fill: #FFFFFF; /* Texte blanc */
+    -fx-border-color: #FFFFFF; /* Bordure blanche */
+    -fx-transform: scale(1.1); /* Agrandissement subtil */
+}

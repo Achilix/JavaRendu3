@@ -24,7 +24,7 @@ public class SalleDAO {
                         rs.getString("location")
                 );
                 salles.add(salle);
-                System.out.println("Fetched Salle: " + salle); // Debugging statement
+                System.out.println("Fetched Salle: " + salle); 
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,7 +61,6 @@ public class SalleDAO {
             stmt.setString(3, salle.getLocation());
             stmt.executeUpdate();
 
-            // Retrieve the generated ID
             ResultSet rs = stmt.getGeneratedKeys();
             if (rs.next()) {
                 salle.setId(rs.getInt(1));

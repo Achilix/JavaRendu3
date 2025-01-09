@@ -2,11 +2,11 @@ package com.yourpackage.controller;
 
 import com.yourpackage.DAO.UserDAO;
 import com.yourpackage.Model.User;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -29,32 +29,32 @@ public class SigninController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
-        // Validate user credentials
-        boolean isAuthenticated = userDao.validateUser(email, password);
+        Task<Boolean> signInTask = new Task<>() {
+            @Override
+            protected Boolean call() {
+                return userDao.validateUser(email, password);
+            }
+        };
 
-        if (isAuthenticated) {
-            User user = userDao.getByEmail(email);
-            if (user != null) {
-                userId = user.getId(); // Store the user ID
+        signInTask.setOnSucceeded(event -> {
+            boolean isAuthenticated = signInTask.getValue();
+            if (isAuthenticated) {
+                User user = userDao.getByEmail(email);
+                userId = user.getId(); 
                 String userType = user.getType();
 
                 if ("Student".equals(userType)) {
                     showUserDashboard();
                 } else if ("professeur".equals(userType)) {
                     showDashboard();
-                } else {
-                    showAlert("Error", "Unknown user type.");
                 }
 
-                // Close the current stage
                 Stage currentStage = (Stage) emailField.getScene().getWindow();
                 currentStage.close();
-            } else {
-                showAlert("Error", "User not found.");
             }
-        } else {
-            showAlert("Error", "Invalid email or password.");
-        }
+        });
+
+        new Thread(signInTask).start();
     }
 
     private void showUserDashboard() {
@@ -76,14 +76,6 @@ public class SigninController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 
     public int getUserId() {

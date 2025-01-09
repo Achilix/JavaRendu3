@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourpackage.controller.UserDashboardController" spacing="10" alignment="CENTER" stylesheets="@styles.css">
@@ -13,7 +12,9 @@
             <TableColumn fx:id="idColumn" text="ID" />
             <TableColumn fx:id="nameColumn" text="Name" />
             <TableColumn fx:id="descriptionColumn" text="Description" />
-            <TableColumn fx:id="dateColumn" text="Date" />
+            <TableColumn fx:id="reservedSalleColumn" text="Reserved Salle" />
+            <TableColumn fx:id="reservedTerrainColumn" text="Reserved Terrain" />
+            <TableColumn fx:id="reservedDateColumn" text="Reserved Date" />
         </columns>
     </TableView>
     <Button text="Back to Main" onAction="#showMainView" />

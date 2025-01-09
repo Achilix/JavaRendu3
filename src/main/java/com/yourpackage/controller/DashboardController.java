@@ -10,7 +10,6 @@ import com.yourpackage.Model.Salle;
 import com.yourpackage.Model.Terrain;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -45,8 +44,7 @@ public class DashboardController {
     @FXML
     private TableColumn<Event, String> descriptionColumn;
 
-    @FXML
-    private TableColumn<Event, Date> dateColumn;
+    
 
     @FXML
     private TableColumn<Event, String> reservedSalleColumn;
@@ -62,7 +60,6 @@ public class DashboardController {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         reservedSalleColumn.setCellValueFactory(cellData -> {
             Event event = cellData.getValue();
@@ -116,7 +113,6 @@ public class DashboardController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateEvent.fxml"));
                 Parent root = loader.load();
 
-                // Pass the selected event to the UpdateEventController
                 UpdateEventController controller = loader.getController();
                 controller.setEvent(selectedEvent);
 
@@ -125,7 +121,6 @@ public class DashboardController {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.showAndWait();
 
-                // Refresh the events list after updating
                 loadAllEvents();
             } catch (IOException e) {
                 e.printStackTrace();

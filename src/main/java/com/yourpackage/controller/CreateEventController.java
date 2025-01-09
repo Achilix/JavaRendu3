@@ -66,7 +66,7 @@ public class CreateEventController {
     }
 
     @FXML
-    private VBox contentArea; // Ensure this is defined
+    private VBox contentArea; 
 
     public void setUserId(int userId) {
         this.userId = userId;
@@ -113,9 +113,7 @@ public class CreateEventController {
 
             showAlert("Create Event", "Event created successfully!");
 
-            // Close the current stage
-            Stage currentStage = (Stage) nameField.getScene().getWindow();
-            currentStage.close();
+           
         } catch (Exception e) {
             showAlert("Error", "Invalid input: " + e.getMessage());
             e.printStackTrace();
@@ -151,13 +149,13 @@ public class CreateEventController {
     public void loadSalles() {
         List<Salle> salles = salleDao.getAll();
         salleComboBox.getItems().setAll(salles);
-        System.out.println("Loaded Salles: " + salles); // Debugging statement
+        System.out.println("Loaded Salles: " + salles); 
     }
 
     public void loadTerrains() {
         List<Terrain> terrains = terrainDao.getAll();
         terrainComboBox.getItems().setAll(terrains);
-        System.out.println("Loaded Terrains: " + terrains); // Debugging statement
+        System.out.println("Loaded Terrains: " + terrains);
     }
 
     private void openNewWindow(String fxmlPath, String title) {
@@ -170,7 +168,6 @@ public class CreateEventController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
-            // Refresh data after the window is closed
             loadSalles();
             loadTerrains();
         } catch (IOException e) {
